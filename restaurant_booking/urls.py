@@ -17,9 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 import app.views
+from app.views.index_view import IndexView
 
 urlpatterns = [
-    url(r"^$", app.views.index, name="index"),
+    url(r"^$", IndexView.as_view(), name="index"),
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include("authentication.urls", namespace='auth'), name="auth"),
 

@@ -1,28 +1,18 @@
-from django.core.urlresolvers import reverse
-
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
 
 from authentication.forms.login_form import LoginForm
-from django.shortcuts import redirect
+from authentication.forms.register_form import RegisterForm
 
 
 class LoginView(TemplateView):
-    template_name = "authentication/login.html"
+    template_name = "authentication/login-or-register.html"
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return redirect("index")
-
-        data = {'form': LoginForm()}
-
-        if 'next' in data.keys():
-            data['next'] = request.GET['next']
-
-        return render_to_response(self.template_name, data, context_instance=RequestContext(request))
+        return redirect("auth:login-or-register")
 
     def post(self, request):
 
@@ -34,12 +24,8 @@ class LoginView(TemplateView):
             user = authenticate(username=username, password=password)
             login(request, user)
             if user:
-                if form.data['next'] != "":
-                    return HttpResponseRedirect(form.data['next'])
-                else:
-                    return redirect("index")
+                return redirect("index")
 
+        data = dict(login_form=form, register_form=RegisterForm())
 
-
-
-        return render_to_response(self.template_name, {'form': form}, context_instance=RequestContext(request))
+        return render_to_response(self.template_name, data, context_instance=RequestContext(request))
