@@ -33,7 +33,7 @@ class RegisterView(TemplateView):
 
             new_user = authenticate(username=data['email'], password=data['password1'])
             login(request, new_user)
-            
+
             return redirect("index")
 
         data = dict(login_form=LoginForm(), register_form=form)
