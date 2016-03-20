@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap/bootstrap.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/app/style.css" %}"/>
+
+
+    <script src="{% static 'js/jquery-1.12.2.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+
+
+</head>
+
+<body>
+{% include 'app/header.html' %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

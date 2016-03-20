@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+
+
+
+    <div class="row">
+
+        <div class="col-md-2 col-md-offset-5 vertical-center">
+
+            <form method="POST">
+                <h1>Login</h1>
+                <input type="hidden" name="next" value="{{ next }}"/>
+                {% csrf_token %}
+
+                {{ form|bootstrap }}
+
+                <input type="submit"/>
+
+            </form>
+
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h1>Hi, {{ request.user.get_short_name }}</h1>
+    {% else %}
+        <h1>Hello guest. Please log in or register.</h1>
+    {% endif %}
+
+{% endblock %}
