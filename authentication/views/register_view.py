@@ -10,7 +10,7 @@ from authentication.models import User
 
 
 class RegisterView(TemplateView):
-    template_name = "authentication/login-or-register.html.html"
+    template_name = "authentication/login-or-register.html"
 
     def get(self, request, *args, **kwargs):
         return redirect("auth:login-or-register")
