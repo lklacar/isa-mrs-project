@@ -24,4 +24,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include("authentication.urls", namespace='auth'), name="auth"),
 
+    url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
+
+
+
+
 ]

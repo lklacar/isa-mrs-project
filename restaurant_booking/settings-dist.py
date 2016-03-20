@@ -38,7 +38,16 @@ INSTALLED_APPS = [
     'bootstrapform',
     'app',
     'authentication',
+    'social.apps.django_app.default',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+    'social.backends.google.GooglePlusAuth',
+)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -123,3 +134,9 @@ AUTH_USER_MODEL = 'authentication.User'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = 'ADD_FACEBOOK_KEY_HERE'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ADD_FACEBOOK_SECRET_HERE'
+
+SOCIAL_AUTH_TWITTER_KEY = "ADD_TWITTER_KEY_HERE"
+SOCIAL_AUTH_TWITTER_SECRET = "ADD_TWITTER_SECRET_HERE"

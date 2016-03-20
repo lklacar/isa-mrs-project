@@ -9,9 +9,15 @@ class UserManager(BaseUserManager):
         Creates and saves a User with the given email and password.
         """
         now = timezone.now()
-        if not email:
-            raise ValueError('The given email must be set')
-        email = self.normalize_email(email)
+
+        # Neither Facebook nor Twitter provide us with user's email address, so we will use their username instead
+        if email != "":
+            email = self.normalize_email(email)
+        else:
+            email = extra_fields['username']
+
+        del extra_fields['username']
+
         user = self.model(email=email,
                           is_staff=is_staff, is_active=True,
                           is_superuser=is_superuser, last_login=now,
