@@ -16,7 +16,8 @@ class UserManager(BaseUserManager):
         else:
             email = extra_fields['username']
 
-        del extra_fields['username']
+        if "username" in extra_fields.keys():
+            del extra_fields['username']
 
         user = self.model(email=email,
                           is_staff=is_staff, is_active=True,
