@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'app',
     'authentication',
     'social.apps.django_app.default',
+    'seeding',
 ]
 
 AUTHENTICATION_BACKENDS = (
