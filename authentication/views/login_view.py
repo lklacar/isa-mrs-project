@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -22,6 +23,10 @@ class LoginView(TemplateView):
             password = form.cleaned_data['password']
 
             user = authenticate(username=username, password=password)
+
+            if not user.is_confirmed:
+                return HttpResponse("You must confirm your email first.")
+
             login(request, user)
             if user:
                 return redirect("index")

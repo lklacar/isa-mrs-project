@@ -1,5 +1,7 @@
+from datetime import datetime, timedelta
+
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import Group
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.views.generic import TemplateView
@@ -7,6 +9,9 @@ from django.views.generic import TemplateView
 from authentication.forms.login_form import LoginForm
 from authentication.forms.register_form import RegisterForm
 from authentication.models import User
+from authentication.models.confirmation_token import ConfirmationToken
+from utils.id import generate_unique_token
+from django.contrib.sites.shortcuts import get_current_site
 
 
 class RegisterView(TemplateView):
@@ -25,15 +30,26 @@ class RegisterView(TemplateView):
             user.first_name = data['first_name']
             user.last_name = data['last_name']
             user.save()
+
+            confirmation_token = ConfirmationToken()
+            confirmation_token.user = user
+            confirmation_token.token = generate_unique_token()
+            confirmation_token.expires = datetime.now() + timedelta(days=1)
+            confirmation_token.save()
+
+            user.send_email("Confirm your email",
+                            "http://" + get_current_site(
+                                    request).domain + "/auth/confirm/?token=" + confirmation_token.token)
+
             """
             group = Group.objects.get(name='Users')
             user.groups.add(group)
             user.save()
             """
-
+            """
             new_user = authenticate(username=data['email'], password=data['password1'])
             login(request, new_user)
-
+            """
             return redirect("index")
 
         data = dict(login_form=LoginForm(), register_form=form)

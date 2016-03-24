@@ -6,6 +6,7 @@ from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
 from authentication.managers.user_manager import UserManager
+from restaurant_booking import settings
 
 
 class User(PermissionsMixin, AbstractBaseUser):
@@ -19,6 +20,9 @@ class User(PermissionsMixin, AbstractBaseUser):
                                     help_text=_('Designates whether this user should be treated as '
                                                 'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+
+    is_confirmed = models.BooleanField(_('email confirmed'), default=False,
+                                       help_text=_('Designates whether the user confirmed his/her email'))
 
     objects = UserManager()
 
@@ -39,8 +43,8 @@ class User(PermissionsMixin, AbstractBaseUser):
     def get_short_name(self):
         return self.first_name
 
-    def send_email(self, subject, message, from_email=None):
-        send_mail(subject, message, from_email, [self.email])
+    def send_email(self, subject, message):
+        send_mail(subject, message, settings.EMAIL_HOST_USER, [self.email])
 
     def permissions(self):
         return Permission.objects.filter(user=self)
