@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'system_manager',
     'seeding',
     'manager',
+    'restaurant',
 ]
 
 AUTHENTICATION_BACKENDS = (
