@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'manager',
     'restaurant',
     'order',
+    'employee',
 ]
 
 AUTHENTICATION_BACKENDS = (
