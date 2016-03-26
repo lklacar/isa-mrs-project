@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
-    'admin',
     'app',
     'authentication',
     'social.apps.django_app.default',
+    'system_manager',
     'seeding',
     'manager',
 ]
