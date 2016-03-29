@@ -23,10 +23,7 @@ urlpatterns = [
     url(r"^$", IndexView.as_view(), name="index"),
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include("authentication.urls", namespace='auth'), name="auth"),
-
     url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
-
-
-
+    url(r'^guest/', include('guest.urls', namespace='guest'), name='guest'),
 
 ]
