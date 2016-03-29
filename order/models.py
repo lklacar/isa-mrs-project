@@ -21,6 +21,9 @@ class SingleOrder(models.Model):
     single_price = models.IntegerField()
     quantity = models.IntegerField()
 
+    class Meta:
+        abstract = True
+
 
 class SingleFoodOrder(SingleOrder):
     item = models.ForeignKey(Food)
