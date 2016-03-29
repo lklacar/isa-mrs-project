@@ -16,18 +16,15 @@ class Order(models.Model):
         return SingleFoodOrder.objects.filter(s=self)
 
 
-class SingleOrder(models.Model):
+class SingleOrder(object):
     order = models.ForeignKey(Order)
     single_price = models.IntegerField()
     quantity = models.IntegerField()
 
-    class Meta:
-        abstract = True
 
-
-class SingleFoodOrder(SingleOrder):
+class SingleFoodOrder(SingleOrder, models.Model):
     item = models.ForeignKey(Food)
 
 
-class SingleDrinkOrder(SingleOrder):
+class SingleDrinkOrder(SingleOrder, models.Model):
     item = models.ForeignKey(Drink)

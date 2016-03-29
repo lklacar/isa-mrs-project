@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^auth/', include("authentication.urls", namespace='auth'), name="auth"),
     url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^guest/', include('guest.urls', namespace='guest'), name='guest'),
-
+    url(r'^manager/', include('manager.urls', namespace='manager'), name='manager'),
 ]

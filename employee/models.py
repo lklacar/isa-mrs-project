@@ -8,9 +8,9 @@ from restaurant.models import Restaurant
 
 
 class Employee(User):
-    shoe_size = models.CharField(max_length=10)
-    clothes_size = models.CharField(max_length=10)
-    works_in = models.ForeignKey(Restaurant)
+    shoe_size = models.CharField(max_length=10, default=0)
+    clothes_size = models.CharField(max_length=10, default=0)
+    works_in = models.ForeignKey(Restaurant, default=None)
 
 
 class Waiter(Employee):

@@ -1,6 +1,8 @@
 from seeding.seeds.admin_seed import AdminSeed
+from seeding.seeds.manager_seed import ManagerSeed
 
 SEEDS = {
-    "admin": AdminSeed
+    "admin": AdminSeed,
+    "manager": ManagerSeed,
 
 }
