@@ -8,21 +8,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-
             <ul class="nav navbar-nav navbar-right">
 
-                {% if request.user.is_authenticated == False %}
-                    <li>
-                        <a href="{% url 'auth:login' %}">Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'auth:register' %}">Register</a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'auth:logout' %}">Logout</a>
-                    </li>
-                {% endif %}
+                {% block header_links %}
+
+                    {% if request.user.is_authenticated == False %}
+                        <li>
+                            <a href="{% url 'auth:login' %}">Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'auth:register' %}">Register</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'auth:logout' %}">Logout</a>
+                        </li>
+                    {% endif %}
+
+                {% endblock %}
 
             </ul>
 

@@ -13,3 +13,13 @@ class ManagerSeed(AbstractSeed):
         manager.is_superuser = False
         manager.is_confirmed = True
         manager.save()
+
+        manager = Manager()
+        manager.email = "manager@example.com"
+        manager.set_password("password")
+        manager.first_name = "Manager"
+        manager.last_name = "Example"
+        manager.is_staff = False
+        manager.is_superuser = False
+        manager.is_confirmed = True
+        manager.save()

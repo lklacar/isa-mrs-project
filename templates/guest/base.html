@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block header_links %}
+    <li>
+        <a href="{% url "guest:profile" request.user.id %}">My profile</a>
+    </li>
+{% endblock %}

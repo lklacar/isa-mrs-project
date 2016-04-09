@@ -1,7 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'guest/base.html' %}
+
 
 {% block content %}
 
-    <h1>Guest</h1>
+
+    <h1>Restaurants</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for restaurant in restaurants %}
+            <tr>
+                <th scope="row">{{ restaurant.name }}</th>
+                <td>{{ restaurant.description }}</td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
 
 {% endblock %}
