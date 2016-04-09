@@ -17,12 +17,15 @@ class Employee(User):
 
 
 class Waiter(Employee):
-    pass
+    def role(self):
+        return "waiter"
 
 
 class Chef(Employee):
-    pass
+    def role(self):
+        return "chef"
 
 
 class Bartender(Employee):
-    pass
+    def role(self):
+        return "bartender"

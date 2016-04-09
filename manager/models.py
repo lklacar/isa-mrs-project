@@ -6,4 +6,5 @@ from authentication.models import User
 
 
 class Manager(User):
-    pass
+    def role(self):
+        return "manager"
