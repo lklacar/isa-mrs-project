@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from employee.models import Waiter, Chef, Bartender
-from manager.forms import AddEmployeeForm
+from manager.forms import AddEmployeeForm, AddFoodForm
 from restaurant.models import Restaurant
 
 
@@ -43,5 +43,22 @@ class AddEmployeeView(TemplateView):
 
             employee.works_in = restaurant
             employee.save()
+
+        return render(request, self.template_name, data)
+
+
+class AddFoodView(TemplateView):
+    template_name = "manager/add-food.html"
+
+    def get(self, request, *args, **kwargs):
+        form = AddFoodForm()
+
+        return render(request, self.template_name, dict(form=form))
+
+    def post(self, request):
+        form = AddFoodForm(request.POST)
+        data = dict(form=form)
+        if form.is_valid():
+            form.save(request=request, commit=True)
 
         return render(request, self.template_name, data)
