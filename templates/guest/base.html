@@ -3,4 +3,8 @@
     <li>
         <a href="{% url "guest:profile" request.user.id %}">My profile</a>
     </li>
+
+    <li>
+        <a href="{% url "guest:profile" request.user.id %}">Friends</a>
+    </li>
 {% endblock %}
