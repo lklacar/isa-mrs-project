@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, render
 from django.template import RequestContext
 from django.views.generic import TemplateView
 
@@ -39,7 +39,7 @@ class RegisterView(TemplateView):
 
             user.send_email("Confirm your email",
                             "http://" + get_current_site(
-                                    request).domain + "/auth/confirm/?token=" + confirmation_token.token)
+                                request).domain + "/auth/confirm/?token=" + confirmation_token.token)
 
             """
             group = Group.objects.get(name='Users')
@@ -54,4 +54,4 @@ class RegisterView(TemplateView):
 
         data = dict(login_form=LoginForm(), register_form=form)
 
-        return render_to_response(self.template_name, data, context_instance=RequestContext(request))
+        return render(request, self.template_name, data)

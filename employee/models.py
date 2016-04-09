@@ -12,6 +12,9 @@ class Employee(User):
     clothes_size = models.CharField(max_length=10, default=0)
     works_in = models.ForeignKey(Restaurant, default=None)
 
+    class Meta:
+        abstract = True
+
 
 class Waiter(Employee):
     pass

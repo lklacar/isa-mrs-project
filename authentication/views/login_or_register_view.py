@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect, render_to_response, render
 from django.template import RequestContext
 from django.views.generic import TemplateView
 
@@ -15,4 +15,4 @@ class LoginOrRegisterView(TemplateView):
 
         data = dict(login_form=LoginForm(), register_form=RegisterForm())
 
-        return render_to_response(self.template_name, data, context_instance=RequestContext(request))
+        return render(request, self.template_name, data)

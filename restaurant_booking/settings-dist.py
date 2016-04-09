@@ -24,7 +24,7 @@ SECRET_KEY = 'cx%(pc4olz(m_pz7@*#^dd+4)3o-1k5%lr^y!1&kuxvh27u!%='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -65,6 +65,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.middleware.authenticated_middleware.AuthenticatedMiddleware'
 ]
 
 ROOT_URLCONF = 'restaurant_booking.urls'
@@ -84,6 +85,7 @@ TEMPLATES = [
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
                 'django.core.context_processors.request',
+
             ],
         },
     },

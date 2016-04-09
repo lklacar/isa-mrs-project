@@ -29,6 +29,9 @@ class User(PermissionsMixin, AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    def role(self):
+        return "guest"
+
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
