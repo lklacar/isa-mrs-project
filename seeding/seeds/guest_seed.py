@@ -6,6 +6,7 @@ class GuestSeed(AbstractSeed):
     def seed(self):
         for i in range(10):
             guest = User()
+            guest.role = "GUEST"
             guest.email = "guest%s@example.com" % str(i)
             guest.set_password('password')
             guest.first_name = "Guest %s" % str(i)

@@ -33,8 +33,6 @@ def add_friend(request, id):
 
     return redirect("friends:list")
 
-    raise Http404
-
 
 def remove_friend(request, id):
     if request.method == "POST":

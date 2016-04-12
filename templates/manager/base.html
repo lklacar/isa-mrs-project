@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block header_links %}
+    <li>
+        <a href="{% url "manager:add-food" %}">Add food</a>
+    </li>
+
+    <li>
+        <a href="{% url "manager:add-employee" %}">Add employee</a>
+    </li>
+
+
+{% endblock %}

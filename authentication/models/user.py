@@ -26,11 +26,20 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     objects = UserManager()
 
+    CHOICES = (
+        ("GUEST", 'Guest'),
+        ("MANAGER", 'Manager'),
+        ("SYSTEM_MANAGER", 'System manager'),
+        ("WAITER", 'Waiter'),
+        ("CHEF", 'Chef'),
+        ("BARTENDER", 'Bartender'),
+    )
+    role = models.CharField(max_length=20,
+                            choices=CHOICES,
+                            default="GUEST")
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-    def role(self):
-        return "guest"
 
     class Meta:
         verbose_name = _('user')

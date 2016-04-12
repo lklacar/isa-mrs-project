@@ -7,9 +7,9 @@ from system_manager.forms import AddRestaurantForm
 from restaurant.models import Restaurant
 from manager.models import Manager
 
-
 from os import urandom
 from django.contrib.sites.shortcuts import get_current_site
+
 
 class AddRestaurantView(TemplateView):
     template_name = 'system_manager/add-restaurant.html'
@@ -40,8 +40,11 @@ class AddRestaurantView(TemplateView):
                                "\n Password : " + manager.password + "\n You can login now " +
                                get_current_site(request).domain + "\n Restaurant booking online")
 
-
             restaurant.manager = manager
             restaurant.save()
 
         return render(request, self.template_name, data)
+
+
+def home_view(request):
+    return render(request, "system_manager/home.html")

@@ -62,3 +62,7 @@ class AddFoodView(TemplateView):
             form.save(request=request, commit=True)
 
         return render(request, self.template_name, data)
+
+
+def home_view(request):
+    return render(request, "manager/home.html")

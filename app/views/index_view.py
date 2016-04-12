@@ -3,15 +3,16 @@ from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
+HOMEPAGES = {
+    "GUEST": "guest:home",
+    "MANAGER": "manager:home",
+    "SYSTEM_MANAGER": "system_manager:home",
+}
+
 
 class IndexView(TemplateView):
-    template_name = "app/index.html"
-
     @method_decorator(login_required(login_url="auth:login-or-register"))
     def get(self, request, *args, **kwargs):
-        role = request.user.role()
+        role = request.user.role
 
-        if role == "guest":
-            return redirect("guest:home")
-        
-        return render(request, self.template_name)
+        return redirect(HOMEPAGES[role])
