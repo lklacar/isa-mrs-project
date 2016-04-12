@@ -49,7 +49,8 @@ class EditEmployeeView(TemplateView):
                     user.shoe_size = data['shoe_size']
                     user.clothes_size = data['clothes_size']
                     user.set_password(data['password'])
-                    user.password_change_count += 1
+                    if data['password'] != "":
+                        user.password_change_count += 1
                     user.save()
                     return redirect("app:index")
 
