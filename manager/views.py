@@ -44,7 +44,7 @@ class AddEmployeeView(TemplateView):
             employee.works_in = restaurant
             employee.save()
 
-        return render(request, self.template_name, data)
+        return render(request, self.template_name, dict(form=form))
 
 
 class AddFoodView(TemplateView):

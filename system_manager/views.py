@@ -43,7 +43,7 @@ class AddRestaurantView(TemplateView):
             restaurant.manager = manager
             restaurant.save()
 
-        return render(request, self.template_name, data)
+        return render(request, self.template_name, dict(form=form))
 
 
 def home_view(request):
