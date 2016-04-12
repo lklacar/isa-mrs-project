@@ -5,6 +5,13 @@
     </li>
 
     <li>
-        <a href="{% url "guest:profile" request.user.id %}">Friends</a>
+        <a href="{% url "friends:list" %}">Friends</a>
     </li>
+
+    <li>
+        <a href="{% url "friends:search" %}">Search users</a>
+    </li>
+
+
+
 {% endblock %}

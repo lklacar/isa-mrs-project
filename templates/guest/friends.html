@@ -1,0 +1,26 @@
+{% extends 'guest/base.html' %}
+
+{% block content %}
+
+
+
+    {% for user in friends %}
+        <ul>
+            <li>
+                <form method="POST" action="{% url "friends:remove" user.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ user.id }}"/>
+
+                    <a href="{% url "guest:profile" user.id %}">{{ user.first_name }}</a>
+                    <input type="submit" value="Remove friend"/>
+
+                </form>
+            </li>
+
+        </ul>
+
+
+
+    {% endfor %}
+
+{% endblock %}

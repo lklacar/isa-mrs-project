@@ -1,0 +1,40 @@
+{% extends 'guest/base.html' %}
+
+{% block content %}
+
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            Search guests:
+            <input name="query" type="text"/>
+        </label>
+        <input type="submit" value="Search"/>
+
+    </form>
+
+
+
+
+    {% for user in users %}
+        <ul>
+            <li>
+                <form method="POST" action="{% url "friends:add" user.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ user.id }}"/>
+                    
+                    <a href="{% url "guest:profile" user.id %}">{{ user.first_name }}</a>
+                    <input type="submit" value="Add Friend"/>
+
+                </form>
+            </li>
+
+        </ul>
+
+
+
+    {% endfor %}
+
+
+{% endblock %}

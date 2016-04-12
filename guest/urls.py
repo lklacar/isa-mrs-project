@@ -1,10 +1,12 @@
 from django.conf.urls import url
 
-import guest.views
+
+from guest.views.home_view import HomeView
+from guest.views.profile_view import ProfileView
 from utils.url import basic_url
 
 urlpatterns = [
-    url(basic_url("profile/{id}"), guest.views.profile, name="profile"),
-    url(r'^home/', guest.views.home, name="home"),
+    url(basic_url("profile/{id}"), ProfileView.as_view(), name="profile"),
+    url(r'^home/', HomeView.as_view(), name="home"),
 
 ]

@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^guest/', include('guest.urls', namespace='guest'), name='guest'),
     url(r'^manager/', include('manager.urls', namespace='manager'), name='manager'),
     url(r'^system_manager/', include('system_manager.urls', namespace='system_manager'), name='system_manager'),
+    url(r'^friends/', include('friends.urls', namespace='friends'), name='friends'),
 ]
