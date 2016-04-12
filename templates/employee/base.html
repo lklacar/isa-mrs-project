@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block header_links %}
+    <li>
+        <a href="{% url "employee:index" %}">Welcome</a>
+    </li>
+    <li>
+        <a href="{% url "employee:edit-profile" %}">Edit profile</a>
+    </li>
+
+
+{% endblock %}

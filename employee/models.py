@@ -11,6 +11,7 @@ class Employee(User):
     shoe_size = models.CharField(max_length=10, default=0)
     clothes_size = models.CharField(max_length=10, default=0)
     works_in = models.ForeignKey(Restaurant, default=None)
+    password_change_count = models.IntegerField(default=0)
 
     class Meta:
         abstract = True

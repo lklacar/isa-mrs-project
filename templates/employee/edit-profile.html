@@ -1,0 +1,12 @@
+{% extends 'employee/base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+    <form method="POST">
+    {% csrf_token %}
+        {{ form|bootstrap }}
+        <input  type="submit" value="Save changes"/>
+
+    </form>
+
+{% endblock %}

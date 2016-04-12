@@ -7,6 +7,9 @@ HOMEPAGES = {
     "GUEST": "guest:home",
     "MANAGER": "manager:home",
     "SYSTEM_MANAGER": "system_manager:home",
+    "WAITER": "waiter:home",
+    "BARTENDER": "bartender:home",
+    "CHEF": "chef:home",
 }
 
 

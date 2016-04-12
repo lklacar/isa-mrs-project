@@ -1,0 +1,15 @@
+{% extends 'employee/base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+    <form method="POST">
+    {% csrf_token %}
+        <h3> Welcome, {{   user.first_name }}! You have to first change your password to continue using this site!</h3>
+
+
+        {{ form|bootstrap }}
+        <input  type="submit" value="Edit password"/>
+
+    </form>
+
+{% endblock %}

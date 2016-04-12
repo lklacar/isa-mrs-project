@@ -28,4 +28,6 @@ urlpatterns = [
     url(r'^manager/', include('manager.urls', namespace='manager'), name='manager'),
     url(r'^system_manager/', include('system_manager.urls', namespace='system_manager'), name='system_manager'),
     url(r'^friends/', include('friends.urls', namespace='friends'), name='friends'),
+    url(r'^waiter/', include('employee.waiter_urls', namespace='waiter'), name='waiter'),
+    url(r'^employee/', include('employee.urls', namespace='employee'), name='employee'),
 ]
