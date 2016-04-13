@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 
-from employee.models import Waiter, Chef, Bartender
+from employee.models import Employee
 from manager.forms import AddEmployeeForm, AddFoodForm
 from restaurant.models import Restaurant
 
@@ -24,20 +24,13 @@ class AddEmployeeView(TemplateView):
         if form.is_valid():
             data = form.cleaned_data
 
-            if data['type'] == 'waiter':
-                employee = Waiter()
-            elif data['type'] == 'chef':
-                employee = Chef()
-            elif data['type'] == 'bartender':
-                employee = Bartender()
-            else:
-                return HttpResponseBadRequest("Employee type does not exists")
-
+            employee = Employee()
             employee.email = data['email']
             employee.first_name = data['first_name']
             employee.last_name = data['last_name']
             employee.shoe_size = data['shoe_size']
             employee.clothes_size = data['clothes_size']
+            employee.role = data['role']
 
             restaurant = Restaurant.objects.filter(manager=request.user)[0]
 

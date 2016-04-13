@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Manager',
+            name='Guest',
             fields=[
                 ('callableuser_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='authentication.CallableUser')),
                 ('email', models.EmailField(max_length=254, unique=True)),

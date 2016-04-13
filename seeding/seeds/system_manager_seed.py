@@ -1,4 +1,4 @@
-from authentication.models import User
+from authentication.models import AbstractUser
 from seeding.seeds.abstract_seed import AbstractSeed
 from system_manager.models import SystemManager
 

@@ -1,11 +1,11 @@
-from authentication.models import User
+from guest.models import Guest
 from seeding.seeds.abstract_seed import AbstractSeed
 
 
 class GuestSeed(AbstractSeed):
     def seed(self):
         for i in range(10):
-            guest = User()
+            guest = Guest()
             guest.role = "GUEST"
             guest.email = "guest%s@example.com" % str(i)
             guest.set_password('password')

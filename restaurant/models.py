@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-from authentication.models import User
+from authentication.models import AbstractUser
 from manager.models import Manager
 
 

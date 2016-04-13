@@ -1,19 +1,24 @@
 from app.permissions.permission import Permission
 from guest.permissions import is_guest
+from manager.models import Manager
+from system_manager.models import SystemManager
 
 
 def is_manager(request):
+    user = request.user._wrapped if hasattr(request.user, '_wrapped') else request.user
+
     if not request.user.is_authenticated() or request.user.is_anonymous():
         return False
 
-    return request.user.role == "MANAGER"
+    return type(user) == Manager
 
 
 def is_system_manager(request):
+    user = request.user._wrapped if hasattr(request.user, '_wrapped') else request.user
     if not request.user.is_authenticated() or request.user.is_anonymous():
         return False
 
-    return request.user.role == "SYSTEM_MANAGER"
+    return type(user) == SystemManager
 
 
 PERMISSIONS = [

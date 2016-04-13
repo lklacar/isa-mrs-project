@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from friendship.models import Friend
 
-from authentication.models import User
+from authentication.models import AbstractUser
+from guest.models import Guest
 
 
 def list_friends(request):
@@ -17,7 +18,7 @@ def search_friends(request):
         return render(request, "friends/search.html")
 
     if request.method == "POST":
-        users = User.objects.filter(
+        users = Guest.objects.filter(
             Q(first_name__icontains=request.POST['query']) | Q(last_name__icontains=request.POST['query']))
 
         return render(request, "friends/search.html", dict(users=users))
@@ -26,7 +27,7 @@ def search_friends(request):
 def add_friend(request, id):
     if request.method == "POST":
         from_user = request.user
-        to_user = User.objects.filter(id=id).first()
+        to_user = Guest.objects.filter(id=id).first()
 
         friendship = Friend.objects.add_friend(from_user, to_user)
         friendship.accept()
@@ -37,7 +38,7 @@ def add_friend(request, id):
 def remove_friend(request, id):
     if request.method == "POST":
         from_user = request.user
-        to_user = User.objects.filter(id=id).first()
+        to_user = Guest.objects.filter(id=id).first()
 
         Friend.objects.remove_friend(from_user, to_user)
 

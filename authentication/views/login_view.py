@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.views.generic import TemplateView
 
 from authentication.forms.login_form import LoginForm

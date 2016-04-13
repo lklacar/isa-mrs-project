@@ -1,12 +1,12 @@
-from employee.models import Waiter, Bartender, Chef
+from employee.models import Employee
 from restaurant.models import Restaurant
 from seeding.seeds.abstract_seed import AbstractSeed
 
 
 class WaiterSeed(AbstractSeed):
     def seed(self):
-        waiter = Waiter()
-        waiter.role = "WAITER"
+        waiter = Employee()
+        waiter.employee_role = "WAITER"
         waiter.email = "kristina@kolosek.com"
         waiter.set_password("gazerocker")
         waiter.first_name = "Kristina"

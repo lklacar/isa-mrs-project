@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserChangeForm
 
-from authentication.models import User
+from authentication.models import AbstractUser
+from authentication.models.default_user import DefaultUser
 
 
 class ChangeUserForm(UserChangeForm):
@@ -13,5 +14,5 @@ class ChangeUserForm(UserChangeForm):
         super(ChangeUserForm, self).__init__(*args, **kargs)
 
     class Meta:
-        model = User
+        model = DefaultUser
         fields = ['email', 'password']

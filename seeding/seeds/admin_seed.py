@@ -1,10 +1,10 @@
-from authentication.models import User
+from authentication.models import GenericUser
 from seeding.seeds.abstract_seed import AbstractSeed
 
 
 class AdminSeed(AbstractSeed):
     def seed(self):
-        user = User()
+        user = GenericUser()
         user.email = "l.klacar@vegaitsourcing.rs"
         user.set_password("qweqwe1*")
         user.first_name = "Luka"

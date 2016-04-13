@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 
-from authentication.models import User
+from guest.models import Guest
 
 
 class ProfileView(TemplateView):
@@ -12,7 +12,7 @@ class ProfileView(TemplateView):
 
     def get(self, request, id, *args, **kwargs):
         try:
-            user = User.objects.filter(id=id).first()
+            user = Guest.objects.filter(id=id).first()
         except:
             raise Http404
 

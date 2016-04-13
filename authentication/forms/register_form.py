@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 
-from authentication.models import User
+from authentication.models import AbstractUser
+from guest.models import Guest
 
 
 class RegisterForm(UserCreationForm):
@@ -13,7 +14,7 @@ class RegisterForm(UserCreationForm):
         super(RegisterForm, self).__init__(*args, **kargs)
 
     class Meta:
-        model = User
+        model = Guest
         fields = ("email", "first_name", "last_name")
 
         error_messages = {

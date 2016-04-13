@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
 
 # Create your models here.
-from authentication.models import User
+from authentication.models import AbstractUser
 
 
-class SystemManager(User):
-    def role(self):
-        return "system_manager"
+class SystemManager(AbstractUser):
+    pass

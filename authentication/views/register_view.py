@@ -8,8 +8,9 @@ from django.views.generic import TemplateView
 
 from authentication.forms.login_form import LoginForm
 from authentication.forms.register_form import RegisterForm
-from authentication.models import User
-from authentication.models.confirmation_token import ConfirmationToken
+from authentication.models import AbstractUser
+
+from guest.models import Guest
 from utils.id import generate_unique_token
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -24,12 +25,13 @@ class RegisterView(TemplateView):
         form = RegisterForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = User()
+            user = Guest()
             user.email = data['email']
             user.set_password(data['password1'])
             user.first_name = data['first_name']
             user.last_name = data['last_name']
             user.save()
+
 
             confirmation_token = ConfirmationToken()
             confirmation_token.user = user
@@ -41,15 +43,11 @@ class RegisterView(TemplateView):
                             "http://" + get_current_site(
                                 request).domain + "/auth/confirm/?token=" + confirmation_token.token)
 
-            """
-            group = Group.objects.get(name='Users')
-            user.groups.add(group)
-            user.save()
-            """
-            """
+
+
             new_user = authenticate(username=data['email'], password=data['password1'])
             login(request, new_user)
-            """
+
             return redirect("index")
 
         data = dict(login_form=LoginForm(), register_form=form)

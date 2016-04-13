@@ -3,7 +3,7 @@ import datetime
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 
-from authentication.models.confirmation_token import ConfirmationToken
+from authentication.models import ConfirmationToken
 
 
 @require_http_methods(["GET"])
