@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import (AbstractBaseUser,
@@ -6,6 +7,8 @@ from django.contrib.auth.models import (AbstractBaseUser,
 from model_utils.managers import InheritanceManager
 
 from django.utils.translation import ugettext_lazy as _
+
+from restaurant_booking import settings
 
 
 class BaseUserManager(DjBaseUserManager, InheritanceManager):
@@ -61,6 +64,9 @@ class AbstractUser(CallableUser):
 
     class Meta:
         abstract = True
+
+    def send_email(self, subject, message):
+        send_mail(subject, message, settings.EMAIL_HOST_USER, [self.email])
 
 
 class GenericUser(AbstractUser):

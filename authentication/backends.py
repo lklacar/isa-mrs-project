@@ -104,7 +104,7 @@ class ManagerUserModelBackend(object):
     """
 
     def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = Manager()
+        UserModel = Manager
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         try:
@@ -195,7 +195,7 @@ class SystemManagerUserModelBackend(object):
     """
 
     def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = SystemManager()
+        UserModel = SystemManager
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         try:
@@ -286,7 +286,7 @@ class EmployeeUserModelBackend(object):
     """
 
     def authenticate(self, username=None, password=None, **kwargs):
-        UserModel = Employee()
+        UserModel = Employee
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
         try:

@@ -14,7 +14,10 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     manager = models.OneToOneField(Manager)
-    menu = models.OneToOneField(Menu)
+    menu = models.OneToOneField(Menu, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Food(models.Model):

@@ -28,8 +28,9 @@ class AddRestaurantView(TemplateView):
             restaurant = Restaurant()
             manager = Manager()
 
-            restaurant.email = data['name']
-            restaurant.first_name = data['description']
+            restaurant.name = data['name']
+            restaurant.description = data['description']
+            
             manager.email = data['manager_email']
             chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
             manager.password = "".join([chars[ord(c) % len(chars)] for c in urandom(8)])
