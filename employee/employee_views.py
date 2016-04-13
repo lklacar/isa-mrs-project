@@ -21,7 +21,7 @@ class IndexView(TemplateView):
                 user.set_password(data['password'])
                 user.password_change_count += 1
                 user.save()
-                return redirect("app:index")
+                return redirect("/")
 
         return render(request, self.template_name, dict(form=form))
 
@@ -52,6 +52,6 @@ class EditEmployeeView(TemplateView):
                     if data['password'] != "":
                         user.password_change_count += 1
                     user.save()
-                    return redirect("app:index")
+                    return redirect("/")
 
         return render(request, self.template_name, dict(form=form))

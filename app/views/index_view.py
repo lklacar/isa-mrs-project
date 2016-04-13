@@ -21,10 +21,9 @@ class IndexView(TemplateView):
 
         user = request.user._wrapped if hasattr(request.user, '_wrapped') else request.user
 
-
         for UserType in HOMEPAGES:
             if type(user) == UserType:
                 return redirect(HOMEPAGES[UserType])
 
         if type(user) == Employee:
-            return redirect("employee:home")
+            return redirect("employee:index")

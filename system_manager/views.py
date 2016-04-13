@@ -30,15 +30,18 @@ class AddRestaurantView(TemplateView):
 
             restaurant.name = data['name']
             restaurant.description = data['description']
-            
+
             manager.email = data['manager_email']
             chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
-            manager.password = "".join([chars[ord(c) % len(chars)] for c in urandom(8)])
+
+            password = "".join([chars[ord(c) % len(chars)] for c in urandom(8)])
+            manager.set_password(password)
+            manager.is_confirmed = True
             manager.save()
 
             manager.send_email("Login details - Restaurant booking online",
                                "Your login details :\n E-mail : " + manager.email +
-                               "\n Password : " + manager.password + "\n You can login now " +
+                               "\n Password : " + password + "\n You can login now " +
                                get_current_site(request).domain + "\n Restaurant booking online")
 
             restaurant.manager = manager
