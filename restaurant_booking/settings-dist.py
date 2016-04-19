@@ -28,6 +28,14 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
 INSTALLED_APPS = [
     'suit',
     'django.contrib.admin',
@@ -46,7 +54,10 @@ INSTALLED_APPS = [
     'restaurant',
     'order',
     'employee',
-    'friendship'
+    'friendship',
+    'guest',
+    'rest_framework',
+    'django.contrib.humanize'
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -54,6 +65,10 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
+    'authentication.backends.GuestUserModelBackend',
+    'authentication.backends.ManagerUserModelBackend',
+    'authentication.backends.SystemManagerUserModelBackend',
+    'authentication.backends.EmployeeUserModelBackend',
     'social.backends.google.GooglePlusAuth',
 )
 
@@ -140,7 +155,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'authentication.GenericUser'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -153,7 +168,7 @@ SOCIAL_AUTH_TWITTER_KEY = "ADD_TWITTER_KEY_HERE"
 SOCIAL_AUTH_TWITTER_SECRET = "ADD_TWITTER_SECRET_HERE"
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'YOUR_EMAIL'
-EMAIL_HOST_PASSWORD = 'YOUR_EMAIL_PASSWORD'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
