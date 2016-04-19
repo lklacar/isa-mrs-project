@@ -57,7 +57,7 @@ class AbstractUser(CallableUser):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
 
     def __unicode__(self):
-        return self.email
+        return "%s %s    -    %s" % (self.first_name, self.last_name, self.email)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELD = USERNAME_FIELD

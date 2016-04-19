@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^friends/', include('friends.urls', namespace='friends'), name='friends'),
     url(r'^waiter/', include('employee.waiter_urls', namespace='waiter'), name='waiter'),
     url(r'^employee/', include('employee.urls', namespace='employee'), name='employee'),
+    url(r'^restaurant/', include('restaurant.urls', namespace='restaurant'), name='restaurant'),
 ]

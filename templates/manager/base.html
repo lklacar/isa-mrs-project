@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
+
+
+
 {% block header_links %}
+
+    <li>
+        <a href="{% url "manager:home" %}">Home</a>
+    </li>
+
     <li>
         <a href="{% url "manager:add-food" %}">Add food</a>
     </li>
 
     <li>
+        <a href="{% url "manager:add-drink" %}">Add drink</a>
+    </li>
+
+    <li>
         <a href="{% url "manager:add-employee" %}">Add employee</a>
+    </li>
+
+    <li>
+        <a href="{% url "manager:tables" %}">Tables</a>
     </li>
 
 

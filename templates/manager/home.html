@@ -1,6 +1,108 @@
 {% extends 'manager/base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+
 
 {% block content %}
-    <h1>Manager home</h1>
+    <h1>{{ restaurant.name }}</h1>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                {% if restaurant.profile_image %}
+                    <img src="/{{ restaurant.profile_image }}" class="img-responsive" alt="">
+                {% else %}
+                    <img src="{% static 'img/restaurant-logo.jpg' %}" class="img-responsive" alt="">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <p>{{ restaurant.description }}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Food</h1>
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for f in food %}
+                        <tr>
+                            <td>
+                                {{ f.name }}
+                            </td>
+                            <td>
+                                {{ f.description }}
+                            </td>
+                            <td>
+                                {{ f.price|intcomma }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h1>Drinks</h1>
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for f in drinks %}
+                        <tr>
+                            <td>
+                                {{ f.name }}
+                            </td>
+                            <td>
+                                {{ f.description }}
+                            </td>
+                            <td>
+                                {{ f.price }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

@@ -10,7 +10,7 @@ class Permission(object):
 
     def has_permission(self, request):
         for permission in self.permissions:
-            if not permission(request):
-                return False
+            if permission(request):
+                return True
 
-        return True
+        return False

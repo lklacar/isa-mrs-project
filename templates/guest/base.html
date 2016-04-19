@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block header_links %}
     <li>
+        <a href="{% url "guest:home" %}">Home</a>
+    </li>
+    |
+    <li>
         <a href="{% url "guest:profile" request.user.id %}">My profile</a>
     </li>
-
+    |
     <li>
-        <a href="{% url "friends:list" %}">Friends</a>
+        <a href="{% url "friends:list" %}">My Friends</a>
     </li>
-
+    |
     <li>
         <a href="{% url "friends:search" %}">Search users</a>
     </li>

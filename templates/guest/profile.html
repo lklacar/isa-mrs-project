@@ -2,54 +2,64 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3>
-                {{ user.first_name }} {{ user.last_name }}
-                {% if user.is_staff %}
-                    (admin user)
-                {% endif %}
-            </h3>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>
-                        First name
-                    </td>
-                    <td>
-                        {{ user.first_name }}
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>
-                        Last name
-                    </td>
-                    <td>
-                        {{ user.last_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Email
-                    </td>
-                    <td>
-                        {{ user.email }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Joined
-                    </td>
-                    <td>
-                        {{ user.date_joined }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <h1 class="page-header">Profile</h1>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <img width="300px" height="300px" src="http://s3.amazonaws.com/suh-s3-nfs/userProfileImages/670.png"
+                     class="avatar img-circle img-thumbnail"
+                     alt="avatar">
+
+
+            </div>
         </div>
-        <div class="col-md-6">
+        <!-- edit form column -->
+        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+            </div>
+            <h3>Personal info</h3>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">First name:</label>
+                    <div class="col-lg-8">
+
+                        <h4>{{ user.first_name }}</h4>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <h4>{{ user.last_name }}</h4>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <h4>{{ user.email }}</h4>
+                    </div>
+                </div>
+
+                {%comment %}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input class="btn btn-primary" value="Save Changes" type="button">
+                            <span></span>
+                            <input class="btn btn-default" value="Cancel" type="reset">
+                        </div>
+                    </div>
+                    {% endcomment %}
+            </form>
         </div>
     </div>
+
+
+
 
 {% endblock %}

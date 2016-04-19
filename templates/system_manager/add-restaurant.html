@@ -2,7 +2,7 @@
 {% load bootstrap %}
 {% block content %}
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
         {{ form|bootstrap }}
         <p> Manager's login instructions will be sent to this email</p>

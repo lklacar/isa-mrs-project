@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 from employee.models import Employee
-from restaurant.models import Food, Restaurant
+from restaurant.models import Food, Restaurant, Drink
 
 
 class AddEmployeeForm(ModelForm):
@@ -29,3 +29,19 @@ class AddFoodForm(ModelForm):
         food.price = data['price']
         food.menu = Restaurant.objects.filter(manager=request.user).first().menu
         food.save()
+
+
+class AddDrinkForm(ModelForm):
+    class Meta:
+        model = Drink
+        fields = ('name', 'description', 'price')
+
+    # noinspection PyMethodOverriding
+    def save(self, request, commit=True):
+        data = self.cleaned_data
+        drink = Drink()
+        drink.name = data['name']
+        drink.description = data['description']
+        drink.price = data['price']
+        drink.menu = Restaurant.objects.filter(manager=request.user).first().menu
+        drink.save()

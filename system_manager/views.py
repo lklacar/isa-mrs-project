@@ -20,7 +20,7 @@ class AddRestaurantView(TemplateView):
         return render(request, self.template_name, data)
 
     def post(self, request):
-        form = AddRestaurantForm(request.POST)
+        form = AddRestaurantForm(request.POST, request.FILES)
         data = dict(form=form)
         if form.is_valid():
             data = form.cleaned_data
@@ -30,6 +30,7 @@ class AddRestaurantView(TemplateView):
 
             restaurant.name = data['name']
             restaurant.description = data['description']
+            restaurant.profile_image = request.FILES['profile_image']
 
             manager.email = data['manager_email']
             chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -45,6 +46,8 @@ class AddRestaurantView(TemplateView):
                                get_current_site(request).domain + "\n Restaurant booking online")
 
             restaurant.manager = manager
+            restaurant.category = data['category']
+
             restaurant.save()
 
         return render(request, self.template_name, dict(form=form))

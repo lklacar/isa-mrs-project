@@ -9,7 +9,7 @@ class AddRestaurantForm(ModelForm):
 
     class Meta:
         model = Restaurant
-        fields = ['name', 'description', ]
+        fields = ['name', 'description', 'profile_image', 'category']
 
 
 

@@ -5,22 +5,31 @@
 
 
     {% for user in friends %}
-        <ul>
-            <li>
-                <form method="POST" action="{% url "friends:remove" user.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ user.id }}"/>
-
-                    <a href="{% url "guest:profile" user.id %}">{{ user.first_name }}</a>
-                    <input type="submit" value="Remove friend"/>
-
-                </form>
-            </li>
-
-        </ul>
+        <form method="POST" action="{% url "friends:remove" user.id %}">
+            {% csrf_token %}
 
 
+            <div class="Popular-Restaurants-grid wow fadeInRight animated" style="visibility: visible;">
+                <div class="col-md-3 restaurent-logo">
+                    <h3><a href="{% url "guest:profile" user.id %}">{{ user.first_name }} {{ user.last_name }}</a></h3>
+                </div>
+
+                <div class=" col-md-7 buy">
+
+                    <input class="btn btn-info btn-lg" type="submit" value="Remove Friend"/>
+
+
+                </div>
+                <div class="clearfix"></div>
+
+
+            </div>
+        </form>
 
     {% endfor %}
+
+
+
+   
 
 {% endblock %}

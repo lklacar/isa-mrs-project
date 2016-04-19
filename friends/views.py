@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from friendship.models import Friend
 
-from authentication.models import AbstractUser
 from guest.models import Guest
 
 

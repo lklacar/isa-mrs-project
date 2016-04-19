@@ -1,28 +1,43 @@
 {% extends 'guest/base.html' %}
-
+{% load staticfiles %}
 
 {% block content %}
-
-
     <h1>Restaurants</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
 
-        {% for restaurant in restaurants %}
-            <tr>
-                <th scope="row">{{ restaurant.name }}</th>
-                <td>{{ restaurant.description }}</td>
-            </tr>
-        {% endfor %}
+    <div class="Popular-Restaurants-content">
+        <div class="Popular-Restaurants-grids">
+            <div class="container">
+                {% for restaurant in restaurants %}
+
+                    <div class="Popular-Restaurants-grid wow fadeInRight animated"
+                         style="visibility: visible;">
+                        <div class="col-md-3 restaurent-logo">
+                            {% if restaurant.profile_image %}
+                                <img src="/{{ restaurant.profile_image }}" class="img-responsive" alt="">
+                            {% else %}
+                                <img src="{% static 'img/restaurant-logo.jpg' %}" class="img-responsive" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-2 restaurent-title">
+                            <div class="logo-title">
+                                <h4><a href="#">{{ restaurant.name }}</a></h4>
+                            </div>
+                            <div class="rating">
+                                <span>ratings</span>
+                                <a href="#"> <img src="{% static 'img/star2.png' %}" class="img-responsive"
+                                                  alt="">(0)</a>
+                            </div>
+                        </div>
+                        <div class="col-md-7 buy">
+
+                            <a class="morebtn hvr-rectangle-in" href="{% url "restaurant:profile" restaurant.id %}">View Profile</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
 
 
-        </tbody>
-    </table>
-
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
