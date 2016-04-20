@@ -18,7 +18,7 @@ def confirm(request):
     if confirmation_token.expires < datetime.datetime.now():
         raise Exception("Confirmation token expired")
 
-    user = confirmation_token.user
+    user = request.user
     user.is_confirmed = True
     user.save()
 

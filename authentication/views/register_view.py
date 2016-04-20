@@ -1,18 +1,15 @@
 from datetime import datetime, timedelta
 
 from django.contrib.auth import authenticate, login
-from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, redirect, render
-from django.template import RequestContext
+from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
 from authentication.forms.login_form import LoginForm
 from authentication.forms.register_form import RegisterForm
-from authentication.models import AbstractUser
-
+from authentication.models import ConfirmationToken
 from guest.models import Guest
 from utils.id import generate_unique_token
-from django.contrib.sites.shortcuts import get_current_site
 
 
 class RegisterView(TemplateView):
@@ -32,7 +29,6 @@ class RegisterView(TemplateView):
             user.last_name = data['last_name']
             user.save()
 
-
             confirmation_token = ConfirmationToken()
             confirmation_token.user = user
             confirmation_token.token = generate_unique_token()
@@ -41,9 +37,7 @@ class RegisterView(TemplateView):
 
             user.send_email("Confirm your email",
                             "http://" + get_current_site(
-                                request).domain + "/auth/confirm/?token=" + confirmation_token.token)
-
-
+                                    request).domain + "/auth/confirm/?token=" + confirmation_token.token)
 
             new_user = authenticate(username=data['email'], password=data['password1'])
             login(request, new_user)

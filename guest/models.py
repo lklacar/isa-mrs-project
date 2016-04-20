@@ -2,9 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
-from authentication.models import AbstractUser
+from authentication.models import ConfirmationToken, AbstractUser
 
 
 class Guest(AbstractUser):
-    pass
+    confirmation_token = models.OneToOneField(ConfirmationToken, blank=True, default=None, null=True)

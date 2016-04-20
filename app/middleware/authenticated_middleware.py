@@ -1,12 +1,17 @@
 from django.http import HttpResponseForbidden
 
 from app.permissions.permissions import PERMISSIONS
+from guest.models import Guest
 
 
 class AuthenticatedMiddleware(object):
     def process_response(self, request, response):
         if request.resolver_match is None:
             return response
+
+        user = request.user._wrapped if hasattr(request.user, '_wrapped') else request.user
+        if type(user) == Guest and not user.is_confirmed:
+            return HttpResponseForbidden("You must confirm your email first.")
 
         for permission in PERMISSIONS:
             resolver_match = request.resolver_match

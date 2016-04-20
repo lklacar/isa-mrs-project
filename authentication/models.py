@@ -1,12 +1,10 @@
+from django.contrib.auth.models import (AbstractBaseUser,
+                                        BaseUserManager as DjBaseUserManager)
 from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import (AbstractBaseUser,
-                                        BaseUserManager as DjBaseUserManager)
-
-from model_utils.managers import InheritanceManager
-
 from django.utils.translation import ugettext_lazy as _
+from model_utils.managers import InheritanceManager
 
 from restaurant_booking import settings
 
@@ -85,6 +83,5 @@ class GenericUser(AbstractUser):
 
 
 class ConfirmationToken(models.Model):
-    user = models.OneToOneField(GenericUser)
     token = models.CharField(max_length=36)
     expires = models.DateTimeField()
